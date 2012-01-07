@@ -107,6 +107,7 @@ public Action:OnStartTouch(client, other)
                                 if(GoombaStomp(client, other))
                                 {
                                     PlayReboundSound(client);
+                                    EmitReboundParticles(other);
                                 }
                                 Goomba_SingleStomp[client] = 1;
                                 CreateTimer(0.5, SinglStompTimer, client);

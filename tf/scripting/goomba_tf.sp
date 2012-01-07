@@ -47,7 +47,7 @@ public OnPluginStart()
     g_Cvar_StompUndisguise = CreateConVar("goomba_undisguise", "1.0", "Undisguise spies after stomping", 0, true, 0.0, true, 1.0);
     g_Cvar_CloakedImun = CreateConVar("goomba_cloaked_immun", "0.0", "Prevent cloaked spies from being stomped", 0, true, 0.0, true, 1.0);
     g_Cvar_BonkedImun = CreateConVar("goomba_bonked_immun", "1.0", "Prevent bonked scout from being stomped", 0, true, 0.0, true, 1.0);
-    g_Cvar_StompMinSpeed = CreateConVar("goomba_minspeed", "360.0", "Minimum falling speed to kill", 0, true, 0.0, false, 0.0);
+    g_Cvar_StompMinSpeed = FindConVar("goomba_minspeed");
 
     HookEvent("player_death", Event_PlayerDeath, EventHookMode_Pre);
 

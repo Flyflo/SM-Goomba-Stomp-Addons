@@ -4,13 +4,14 @@
 #include <sdkhooks>
 #include <colors>
 #include <goomba>
+#include <sdktools>
 
 new Handle:g_Cvar_StompMinSpeed = INVALID_HANDLE;
 
 new Goomba_SingleStomp[MAXPLAYERS+1] = 0;
 
-#define PL_NAME "Goomba Stomp CSS"
-#define PL_DESC "Goomba Stomp CSS plugin"
+#define PL_NAME "Goomba Stomp L4D"
+#define PL_DESC "Goomba Stomp L4D plugin"
 #define PL_VERSION "1.0.0"
 
 public Plugin:myinfo =
@@ -27,9 +28,9 @@ public OnPluginStart()
     decl String:modName[32];
     GetGameFolderName(modName, sizeof(modName));
 
-    if(!StrEqual(modName, "cstrike", false))
+    if(!(StrEqual(modName, "left4dead", false) || StrEqual(modName, "left4dead2", false)))
     {
-        SetFailState("This plugin only works with Counter-Strike: Source");
+        SetFailState("This plugin only works with Left 4 Dead (1/2)");
     }
 
     g_Cvar_StompMinSpeed = FindConVar("goomba_minspeed");
@@ -62,7 +63,7 @@ public Action:OnStartTouch(client, other)
 
             new Float:HeightDiff = ClientPos[2] - VictimPos[2];
 
-            if((HeightDiff > 61.0) || ((GetClientButtons(other) & IN_DUCK) && (HeightDiff > 45.0)))
+            if((HeightDiff > 71.0) || ((GetClientButtons(other) & IN_DUCK) && (HeightDiff > 55.0)))
             {
                 decl Float:vec[3];
                 GetEntPropVector(client, Prop_Data, "m_vecAbsVelocity", vec);

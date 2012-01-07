@@ -49,6 +49,8 @@ public OnPluginStart()
     g_Cvar_BonkedImun = CreateConVar("goomba_bonked_immun", "1.0", "Prevent bonked scout from being stomped", 0, true, 0.0, true, 1.0);
     g_Cvar_StompMinSpeed = FindConVar("goomba_minspeed");
 
+    AutoExecConfig(true, "goomba.tf");
+
     HookEvent("player_death", Event_PlayerDeath, EventHookMode_Pre);
 
     // Support for plugin late loading

@@ -13,6 +13,7 @@ new Handle:g_Cvar_StunImun = INVALID_HANDLE;
 new Handle:g_Cvar_StompUndisguise = INVALID_HANDLE;
 new Handle:g_Cvar_CloakedImun = INVALID_HANDLE;
 new Handle:g_Cvar_BonkedImun = INVALID_HANDLE;
+new Handle:g_Cvar_FriendlyFire = INVALID_HANDLE;
 
 new Goomba_SingleStomp[MAXPLAYERS+1] = 0;
 
@@ -47,6 +48,7 @@ public OnPluginStart()
     g_Cvar_StompUndisguise = CreateConVar("goomba_undisguise", "1.0", "Undisguise spies after stomping", 0, true, 0.0, true, 1.0);
     g_Cvar_CloakedImun = CreateConVar("goomba_cloaked_immun", "0.0", "Prevent cloaked spies from being stomped", 0, true, 0.0, true, 1.0);
     g_Cvar_BonkedImun = CreateConVar("goomba_bonked_immun", "1.0", "Prevent bonked scout from being stomped", 0, true, 0.0, true, 1.0);
+    g_Cvar_FriendlyFire = CreateConVar("goomba_friendlyfire", "0.0", "Enable friendly fire, \"tf_avoidteammates\" and \"mp_friendlyfire\" must be set to 1", 0, true, 0.0, true, 1.0);
     g_Cvar_StompMinSpeed = FindConVar("goomba_minspeed");
 
     AutoExecConfig(true, "goomba.tf");
@@ -146,10 +148,17 @@ bool:AreValidStompTargets(client, victim)
     {
         return false;
     }
+
     if(GetClientTeam(client) == GetClientTeam(victim))
     {
-        return false;
+        if( !GetConVarBool(g_Cvar_FriendlyFire) ||
+            !GetConVarBool(FindConVar("mp_friendlyfire")) ||
+            GetConVarBool(FindConVar("tf_avoidteammates")))
+        {
+            return false;
+        }
     }
+
     if(GetEntProp(victim, Prop_Data, "m_takedamage", 1) == 0)
     {
         return false;

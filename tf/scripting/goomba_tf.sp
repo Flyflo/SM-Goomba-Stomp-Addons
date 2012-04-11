@@ -104,9 +104,9 @@ public Action:OnStartTouch(client, other)
                     {
                         if(AreValidStompTargets(client, other))
                         {
-                            new ImmunityResult:result = CheckImmunity(client, other);
+                            new immunityResult = CheckImmunity(client, other);
 
-                            if(result == NoImmunity)
+                            if(immunityResult == GOOMBA_IMMUNFLAG_NONE)
                             {
                                 if(GoombaStomp(client, other))
                                 {
@@ -116,7 +116,7 @@ public Action:OnStartTouch(client, other)
                                 Goomba_SingleStomp[client] = 1;
                                 CreateTimer(0.5, SinglStompTimer, client);
                             }
-                            else if(result == VictimImmunity)
+                            else if(immunityResult & GOOMBA_IMMUNFLAG_VICTIM)
                             {
                                 CPrintToChat(client, "%t", "Victim Immun");
                             }

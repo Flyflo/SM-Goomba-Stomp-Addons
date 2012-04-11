@@ -1,0 +1,14 @@
+Goomba Stomp Addons
+===================
+Collection of game specific addons for the goomba stomp plugin running on Sourcemod.
+===================
+
+Supported games/modes:
+    - Team Fortress 2 (full support)
+    - Left 4 Dead 1 and 2 (beta version)
+    - Counter-Strike: Source (beta version)
+
+INSTALLATION:
+-------------
+Install the goomba stomp core plugin.
+Pick the .smx file corresponding to your game and put it in your addons/sourcemod/plugins folder.

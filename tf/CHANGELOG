@@ -1,0 +1,4 @@
+- 1.0.0 :
+           - Fixed über immunity.
+           - Added support for friendly fire when tf_avoidteammates = 0.
+           - Added m_takedamage support.

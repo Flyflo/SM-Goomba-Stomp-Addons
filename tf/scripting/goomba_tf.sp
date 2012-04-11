@@ -104,14 +104,14 @@ public Action:OnStartTouch(client, other)
                     {
                         if(AreValidStompTargets(client, other))
                         {
-                            new immunityResult = CheckImmunity(client, other);
+                            new immunityResult = CheckStompImmunity(client, other);
 
                             if(immunityResult == GOOMBA_IMMUNFLAG_NONE)
                             {
                                 if(GoombaStomp(client, other))
                                 {
-                                    PlayReboundSound(client);
-                                    EmitReboundParticles(other);
+                                    PlayStompReboundSound(client);
+                                    EmitStompParticles(other);
                                 }
                                 Goomba_SingleStomp[client] = 1;
                                 CreateTimer(0.5, SinglStompTimer, client);

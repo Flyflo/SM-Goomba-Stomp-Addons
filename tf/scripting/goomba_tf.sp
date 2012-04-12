@@ -65,7 +65,7 @@ public OnPluginStart()
     }
 }
 
-public Action:OnPreStomp(attacker, victim, &Float:damageMultiplier, &Float:damageBonus, &Float:reboundPower)
+public Action:OnStomp(attacker, victim, &Float:damageMultiplier, &Float:damageBonus, &Float:reboundPower)
 {
     if(TF2_IsPlayerInCondition(victim, TFCond_Ubercharged) && !GetConVarBool(g_Cvar_UberImun))
     {

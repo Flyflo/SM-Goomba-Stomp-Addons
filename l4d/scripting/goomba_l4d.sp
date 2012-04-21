@@ -12,7 +12,7 @@ new Goomba_SingleStomp[MAXPLAYERS+1] = 0;
 
 #define PL_NAME "Goomba Stomp L4D"
 #define PL_DESC "Goomba Stomp L4D plugin"
-#define PL_VERSION "1.0.0"
+#define PL_VERSION "1.0.1"
 
 public Plugin:myinfo =
 {
@@ -33,8 +33,6 @@ public OnPluginStart()
         SetFailState("This plugin only works with Left 4 Dead (1/2)");
     }
 
-    g_Cvar_StompMinSpeed = FindConVar("goomba_minspeed");
-
     // Support for plugin late loading
     for (new client = 1; client <= MaxClients; client++)
     {
@@ -43,6 +41,11 @@ public OnPluginStart()
             OnClientPutInServer(client);
         }
     }
+}
+
+public OnConfigsExecuted()
+{
+    g_Cvar_StompMinSpeed = FindConVar("goomba_minspeed");
 }
 
 public OnClientPutInServer(client)

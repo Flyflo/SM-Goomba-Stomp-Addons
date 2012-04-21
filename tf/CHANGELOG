@@ -2,3 +2,6 @@
            - Fixed über immunity.
            - Added support for friendly fire when tf_avoidteammates = 0.
            - Added m_takedamage support.
+
+- 1.0.1 :
+           - Moved FindConVar("goomba_minspeed") in OnConfigsExecuted()

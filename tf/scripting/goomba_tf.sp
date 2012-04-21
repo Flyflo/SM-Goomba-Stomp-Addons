@@ -19,7 +19,7 @@ new Goomba_SingleStomp[MAXPLAYERS+1] = 0;
 
 #define PL_NAME "Goomba Stomp TF2"
 #define PL_DESC "Goomba Stomp TF2 plugin"
-#define PL_VERSION "1.0.0"
+#define PL_VERSION "1.0.1"
 
 public Plugin:myinfo =
 {
@@ -49,7 +49,6 @@ public OnPluginStart()
     g_Cvar_CloakedImun = CreateConVar("goomba_cloaked_immun", "0.0", "Prevent cloaked spies from being stomped", 0, true, 0.0, true, 1.0);
     g_Cvar_BonkedImun = CreateConVar("goomba_bonked_immun", "1.0", "Prevent bonked scout from being stomped", 0, true, 0.0, true, 1.0);
     g_Cvar_FriendlyFire = CreateConVar("goomba_friendlyfire", "0.0", "Enable friendly fire, \"tf_avoidteammates\" and \"mp_friendlyfire\" must be set to 1", 0, true, 0.0, true, 1.0);
-    g_Cvar_StompMinSpeed = FindConVar("goomba_minspeed");
 
     AutoExecConfig(true, "goomba.tf");
 
@@ -63,6 +62,11 @@ public OnPluginStart()
             OnClientPutInServer(client);
         }
     }
+}
+
+public OnConfigsExecuted()
+{
+    g_Cvar_StompMinSpeed = FindConVar("goomba_minspeed");
 }
 
 public Action:OnStomp(attacker, victim, &Float:damageMultiplier, &Float:damageBonus, &Float:reboundPower)

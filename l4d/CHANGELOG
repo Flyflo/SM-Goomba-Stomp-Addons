@@ -3,3 +3,6 @@
 
 - 1.0.1 :
            - Moved FindConVar("goomba_minspeed") in OnConfigsExecuted()
+
+- 1.0.2 :
+           - Forgot to add the stomp message.

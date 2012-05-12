@@ -12,7 +12,7 @@ new Goomba_SingleStomp[MAXPLAYERS+1] = 0;
 
 #define PL_NAME "Goomba Stomp L4D"
 #define PL_DESC "Goomba Stomp L4D plugin"
-#define PL_VERSION "1.0.1"
+#define PL_VERSION "1.0.2"
 
 public Plugin:myinfo =
 {
@@ -32,6 +32,10 @@ public OnPluginStart()
     {
         SetFailState("This plugin only works with Left 4 Dead (1/2)");
     }
+
+    LoadTranslations("goomba.phrases");
+
+    HookEvent("player_death", Event_PlayerDeath, EventHookMode_Pre);
 
     // Support for plugin late loading
     for (new client = 1; client <= MaxClients; client++)
@@ -133,6 +137,18 @@ bool:AreValidStompTargets(client, victim)
     return true;
 }
 
+public Action:Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroadcast)
+{
+    if(GetEventBool(event, "goomba"))
+    {
+        new victim = GetClientOfUserId(GetEventInt(event, "userid"));
+        new killer = GetClientOfUserId(GetEventInt(event, "attacker"));
+
+        CPrintToChatAllEx(killer, "%t", "Goomba Stomp", killer, victim);
+    }
+
+    return Plugin_Continue;
+}
 
 public Action:SinglStompTimer(Handle:timer, any:client)
 {

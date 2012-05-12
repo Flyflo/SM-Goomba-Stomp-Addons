@@ -143,6 +143,9 @@ public Action:Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
         new killer = GetClientOfUserId(GetEventInt(event, "attacker"));
 
         CPrintToChatAllEx(killer, "%t", "Goomba Stomp", killer, victim);
+
+        PlayStompSound(victim);
+        PrintHintText(victim, "%t", "Victim Stomped");
     }
 
     return Plugin_Continue;

@@ -5,3 +5,6 @@
 
 - 1.0.1 :
            - Moved FindConVar("goomba_minspeed") in OnConfigsExecuted()
+- 1.1.0 :
+           - The plugin now uses m_vecMaxs to calculate players' sizes.
+           - Replaced colors by morecolors.

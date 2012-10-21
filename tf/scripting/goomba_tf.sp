@@ -3,7 +3,7 @@
 #include <sourcemod>
 #include <sdkhooks>
 #include <tf2_stocks>
-#include <colors>
+#include <morecolors>
 #include <goomba>
 
 new Handle:g_Cvar_StompMinSpeed = INVALID_HANDLE;
@@ -19,7 +19,7 @@ new Goomba_SingleStomp[MAXPLAYERS+1] = 0;
 
 #define PL_NAME "Goomba Stomp TF2"
 #define PL_DESC "Goomba Stomp TF2 plugin"
-#define PL_VERSION "1.0.1"
+#define PL_VERSION "1.1.0"
 
 public Plugin:myinfo =
 {
@@ -92,12 +92,14 @@ public Action:OnStartTouch(client, other)
         {
             decl Float:ClientPos[3];
             decl Float:VictimPos[3];
+            decl Float:VictimVecMaxs[3];
             GetClientAbsOrigin(client, ClientPos);
             GetClientAbsOrigin(other, VictimPos);
-
+            GetEntPropVector(other, Prop_Send, "m_vecMaxs", VictimVecMaxs);
+            new Float:victimHeight = VictimVecMaxs[2];
             new Float:HeightDiff = ClientPos[2] - VictimPos[2];
 
-            if((HeightDiff > 82.0) || ((GetClientButtons(other) & IN_DUCK) && (HeightDiff > 62.0)))
+            if(HeightDiff > victimHeight)
             {
                 decl Float:vec[3];
                 GetEntPropVector(client, Prop_Data, "m_vecAbsVelocity", vec);

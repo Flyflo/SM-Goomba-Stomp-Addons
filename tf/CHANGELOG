@@ -8,3 +8,5 @@
 - 1.1.0 :
            - The plugin now uses m_vecMaxs to calculate players' sizes.
            - Replaced colors by morecolors.
+- 1.1.1 :
+           - Abort the loading if we can't find the goomba_minspeed cvar.

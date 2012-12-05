@@ -67,6 +67,10 @@ public OnPluginStart()
 public OnConfigsExecuted()
 {
     g_Cvar_StompMinSpeed = FindConVar("goomba_minspeed");
+    if(g_Cvar_StompMinSpeed == INVALID_HANDLE)
+    {
+        SetFailState("Unable to find the goomba_minspeed cvar, make sure goomba core plugin is correctly loaded.");
+    }
 }
 
 public Action:OnStomp(attacker, victim, &Float:damageMultiplier, &Float:damageBonus, &Float:reboundPower)
